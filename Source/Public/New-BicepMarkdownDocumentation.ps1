@@ -45,8 +45,14 @@ function New-BicepMarkdownDocumentation {
             $BuildObject = (Build-BicepNetFile -Path $SourceFile.FullName -ErrorAction Stop) | ConvertFrom-Json -Depth 100
         }
         catch {
-                Write-Warning -Message "Failed to build $($SourceFile.Name) - $($_.Exception.Message)"
-                continue
+            switch ($ErrorActionPreference) {
+                'Stop' {
+                    throw
+                }
+                default {
+                    Write-Warning -Message "Failed to build $($SourceFile.Name) - $($_.Exception.Message)"
+                    continue
+                }
             }
         }
         #endregion
