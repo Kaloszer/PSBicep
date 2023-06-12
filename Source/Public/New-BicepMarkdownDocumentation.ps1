@@ -45,10 +45,10 @@ function New-BicepMarkdownDocumentation {
             $BuildObject = (Build-BicepNetFile -Path $SourceFile.FullName -ErrorAction Stop) | ConvertFrom-Json -Depth 100
         }
         catch {
-                Write-Warning -Message "Failed to build $($SourceFile.Name) - $($_.Exception.Message)"
-                continue
-            }
+            Write-Warning -Message "Failed to build $($SourceFile.Name) - $($_.Exception.Message)"
+            continue
         }
+    
         #endregion
 
         #region Get used modules in the bicep file
@@ -146,15 +146,15 @@ $MDModules
 "@
 
         #endregion
-
-        #region output
-        if ($Console) {
-            $FileDocumentationResult
-        }
-        else {
-            $OutFileName = $SourceFile.FullName -replace '\.bicep$', '.md'
-            $FileDocumentationResult | Out-File $OutFileName
-        }
-        #endregion
     }
+
+    #region output
+    if ($Console) {
+        $FileDocumentationResult
+    }
+    else {
+        $OutFileName = $SourceFile.FullName -replace '\.bicep$', '.md'
+        $FileDocumentationResult | Out-File $OutFileName
+    }
+    #endregion
 }
