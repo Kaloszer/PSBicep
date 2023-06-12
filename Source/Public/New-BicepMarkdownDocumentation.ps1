@@ -150,9 +150,8 @@ $MDModules
 "@
 
         #endregion
-    }
 
-    #region output
+        #region output
     if ($Console) {
         $FileDocumentationResult
     }
@@ -160,5 +159,6 @@ $MDModules
         $OutFileName = $SourceFile.FullName -replace '\.bicep$', '.md'
         $FileDocumentationResult | Out-File $OutFileName
     }
-    #endregion
+        #endregion
+    }
 }
