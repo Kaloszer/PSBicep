@@ -52,7 +52,6 @@ function New-BicepMarkdownDocumentation {
                 default { continue }
             }
         }
-    
         #endregion
 
         #region Get used modules in the bicep file
@@ -152,13 +151,13 @@ $MDModules
         #endregion
 
         #region output
-    if ($Console) {
-        $FileDocumentationResult
-    }
-    else {
-        $OutFileName = $SourceFile.FullName -replace '\.bicep$', '.md'
-        $FileDocumentationResult | Out-File $OutFileName
-    }
+        if ($Console) {
+            $FileDocumentationResult
+        }
+        else {
+            $OutFileName = $SourceFile.FullName -replace '\.bicep$', '.md'
+            $FileDocumentationResult | Out-File $OutFileName
+        }
         #endregion
     }
 }
